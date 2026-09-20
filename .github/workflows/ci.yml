@@ -2,9 +2,9 @@ name: CI - Build & Verify
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, develop ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, develop ]
 
 jobs:
   build:
@@ -29,7 +29,6 @@ jobs:
       - name: Compile and Run Tests (Unit & Integration via Testcontainers)
         run: ./mvnw clean verify -B
         env:
-          # Garante que o Testcontainers utilize o daemon do docker do runner
           TESTCONTAINERS_RYUK_DISABLED: "false"
 
       - name: Publish Test Report
