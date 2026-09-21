@@ -20,7 +20,8 @@ public class FinancialTransactionRepositoryAdapter implements FinancialTransacti
 
     @Override
     public FinancialTransaction save(FinancialTransaction financialTransaction) {
-        financialTransactionJpaRepository.save(financialTransactionMapper.toEntity(financialTransaction));
-        return financialTransaction;
+        return financialTransactionMapper.toDomain(
+                financialTransactionJpaRepository.save(financialTransactionMapper.toEntity(financialTransaction))
+        );
     }
 }
